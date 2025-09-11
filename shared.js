@@ -107,23 +107,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add scroll-to-top button
     const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    scrollToTopBtn.innerHTML = '↑';
     scrollToTopBtn.className = 'scroll-to-top';
     scrollToTopBtn.style.cssText = `
         position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: var(--primary-color, #00cfff);
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #00cfff, #8b5cf6);
         color: white;
         border: none;
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         cursor: pointer;
         display: none;
         z-index: 1000;
-        box-shadow: 0 4px 15px rgba(0, 207, 255, 0.3);
+        box-shadow: 0 8px 25px rgba(0, 207, 255, 0.4);
         transition: all 0.3s ease;
+        font-size: 20px;
+        font-weight: bold;
+        backdrop-filter: blur(10px);
     `;
     
     document.body.appendChild(scrollToTopBtn);
@@ -143,6 +146,17 @@ document.addEventListener('DOMContentLoaded', function() {
             top: 0,
             behavior: 'smooth'
         });
+    });
+
+    // Add hover effect for scroll-to-top button
+    scrollToTopBtn.addEventListener('mouseenter', () => {
+        scrollToTopBtn.style.transform = 'scale(1.1)';
+        scrollToTopBtn.style.boxShadow = '0 12px 35px rgba(0, 207, 255, 0.6)';
+    });
+
+    scrollToTopBtn.addEventListener('mouseleave', () => {
+        scrollToTopBtn.style.transform = 'scale(1)';
+        scrollToTopBtn.style.boxShadow = '0 8px 25px rgba(0, 207, 255, 0.4)';
     });
 });
 

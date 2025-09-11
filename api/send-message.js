@@ -36,17 +36,46 @@ export default async function handler(req, res) {
       });
     }
 
-    // Format message for Telegram
-    const telegramMessage = `🔔 New Support Message
+    // Format beautiful message for Telegram
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+    const formattedTime = now.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
 
-👤 Name: ${name}
-📧 Email: ${email}
-📋 Subject: ${subject || 'No subject'}
+    const telegramMessage = `
+🌟 <b>NEW PORTFOLIO MESSAGE</b> 🌟
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💬 Message:
-${message}
+<b>👤 Sender Information:</b>
+┏━ <b>Name:</b> ${name}
+┗━ <b>Email:</b> ${email}
 
-⏰ Received: ${new Date().toLocaleString()}`;
+<b>📋 Subject:</b> ${subject || '💭 General Inquiry'}
+
+<b>💬 Message:</b>
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃ ${message.replace(/\n/g, '\n┃ ')}
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+<b>⏰ Received:</b>
+📅 ${formattedDate}
+🕐 ${formattedTime}
+
+<b>🔗 Quick Actions:</b>
+• Reply directly to this chat
+• Check portfolio: <a href="https://rayben445.vercel.app">Portfolio</a>
+• GitHub: <a href="https://github.com/RayBen445">@RayBen445</a>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<i>🚀 Sent via RayBen445 Portfolio</i>`;
 
     // Send to Telegram
     const telegramUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
