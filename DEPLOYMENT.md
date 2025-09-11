@@ -1,5 +1,18 @@
 # RayBen445 Portfolio - Deployment Guide
 
+## ⚠️ IMPORTANT: Environment Variables Setup
+
+**Before deploying, you MUST set up environment variables in Vercel for the portfolio features to work properly.**
+
+Required environment variables:
+- `TELEGRAM_BOT_TOKEN` - For contact form Telegram integration
+- `TELEGRAM_USER_ID` - Your Telegram user ID for receiving messages  
+- `GOOGLE_API_KEY` - For AI text and image generation features
+
+**📋 [Complete Setup Guide](ENVIRONMENT_SETUP.md)** - Follow this guide to configure all environment variables.
+
+---
+
 ## 🚀 Quick Deploy to Vercel
 
 ### Method 1: Vercel CLI (Recommended)
@@ -18,17 +31,21 @@
    vercel --prod
    ```
 
+4. **After deployment**: Set up environment variables in Vercel dashboard ([See Environment Setup Guide](ENVIRONMENT_SETUP.md))
+
 ### Method 2: GitHub Integration
 1. Push this repository to GitHub
 2. Go to [vercel.com](https://vercel.com)
 3. Click "New Project"
 4. Import your GitHub repository
 5. Deploy automatically
+6. **After deployment**: Set up environment variables in Vercel dashboard ([See Environment Setup Guide](ENVIRONMENT_SETUP.md))
 
 ### Method 3: Drag & Drop
 1. Go to [vercel.com](https://vercel.com)
 2. Drag and drop the project folder
 3. Deploy instantly
+4. **After deployment**: Set up environment variables in Vercel dashboard ([See Environment Setup Guide](ENVIRONMENT_SETUP.md))
 
 ## 🛠️ Local Development
 
@@ -123,6 +140,12 @@ The site includes security headers configured in `vercel.json`:
 - Ensure all files are in the correct directory
 - Check that `vercel.json` is properly formatted
 - Verify all links and image sources are correct
+
+### Environment Variable Issues
+- **Contact form not working**: Check `TELEGRAM_BOT_TOKEN` and `TELEGRAM_USER_ID` are set
+- **AI features not working**: Check `GOOGLE_API_KEY` is set and has proper permissions
+- **"Server configuration error"**: Missing environment variables - see [Environment Setup Guide](ENVIRONMENT_SETUP.md)
+- **Redeploy after setting environment variables** for changes to take effect
 
 ### Performance Issues
 - GitHub stats API may have rate limits
