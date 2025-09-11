@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manual Navigation Test</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        .nav-menu { list-style: none; padding: 0; display: flex; gap: 1rem; border-bottom: 1px solid #ccc; padding-bottom: 1rem; }
+        #about { height: 100vh; padding-top: 60px; border-top: 1px solid #ccc; margin-top: 20px; }
+        .instructions { background-color: #f0f0f0; padding: 15px; border: 1px solid #ddd; margin-bottom: 20px; }
+        .pass { color: green; font-weight: bold; }
+        .fail { color: red; font-weight: bold; }
+        /* Required for script.js to find elements */
+        .hamburger, .bar { display: none; }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h2>Manual Test for Navigation Fix</h2>
+        <p>This file is for manually verifying the navigation bug fix in `script.js`.</p>
+
+        <h3>How to Test:</h3>
+        <ol>
+            <li>Open this file in a web browser.</li>
+            <li>
+                <strong>Test Case 1 (External Link):</strong> Click the "Projects (Should Navigate)" link.
+                <ul>
+                    <li><span class="fail">BUG BEHAVIOR (FAIL):</span> Nothing happens. The browser stays on this page.</li>
+                    <li><span class="pass">FIXED BEHAVIOR (PASS):</span> The browser attempts to navigate to `projects.html` (it will likely result in a "File not found" error if `projects.html` is not in the same directory, but the key is that the browser *attempts* navigation).</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Test Case 2 (Internal Scroll):</strong> Click the "About (Should Scroll)" link.
+                <ul>
+                    <li><span class="pass">EXPECTED BEHAVIOR (PASS):</span> The page smoothly scrolls down to the "About Section".</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <h1>Navigation Test Page</h1>
+
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <!-- Note: The href is relative to the tests/ directory. We need to go up one level. -->
+                <a href="../projects.html" class="nav-link">Projects (Should Navigate)</a>
+            </li>
+            <li class="nav-item">
+                <a href="#about" class="nav-link">About (Should Scroll)</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div style="height: 500px;">
+        <p>Scroll down to see the "About" section.</p>
+    </div>
+
+    <section id="about">
+        <h2>About Section</h2>
+        <p>This is the target for the smooth scroll link.</p>
+    </section>
+
+    <!-- The script must be loaded from the root directory -->
+    <script src="../script.js"></script>
+</body>
+</html>
