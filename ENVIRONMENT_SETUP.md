@@ -1,114 +1,109 @@
-# Environment Variables Configuration
+# Environment Variables Setup Guide
 
-This document explains how to set up environment variables for the portfolio's features including Telegram integration and Google AI services.
+This guide helps you set up the optional environment variables for enhanced portfolio features.
 
-## Required Environment Variables
+## 🎯 What You Need
 
-### For Vercel Deployment
+| Variable | Purpose | Required? |
+|----------|---------|-----------|
+| `TELEGRAM_BOT_TOKEN` | Contact form messages to Telegram | No - form works without it |
+| `TELEGRAM_USER_ID` | Your Telegram chat ID | No - needed only if using bot |
+| `GOOGLE_API_KEY` | AI text & image generation | No - AI pages work without it |
 
-You need to set these environment variables in your Vercel dashboard:
+**💡 The portfolio works perfectly without these variables!** They just enable extra features.
 
-1. **TELEGRAM_BOT_TOKEN**
-   - Your Telegram bot token from @BotFather
-   - Required for: Contact form submissions via Telegram
-   - Example: `1234567890:ABCdefGHIjklMNOpqrsTUVwxYZ123456789`
+## ⚡ Quick Setup
 
-2. **TELEGRAM_USER_ID**
-   - Your personal Telegram user ID (where messages will be sent)
-   - Required for: Contact form submissions via Telegram
-   - Example: `123456789`
+### 1️⃣ Telegram Setup (for contact form)
 
-3. **GOOGLE_API_KEY**
-   - Your Google API key with GenAI permissions
-   - Required for: AI text generation and AI image generation features
-   - Example: `AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
-
-## How to Set Up
-
-### Step 1: Create a Telegram Bot
-
-1. Message @BotFather on Telegram
+#### Get Bot Token:
+1. Message [@BotFather](https://t.me/BotFather) on Telegram
 2. Send `/newbot`
-3. Choose a name for your bot
-4. Choose a username for your bot (must end with 'bot')
-5. Copy the bot token provided
+3. Follow prompts to create your bot
+4. Copy the token (format: `1234567890:ABCdef...`)
 
-### Step 2: Get Your User ID
+#### Get User ID:
+1. Message [@userinfobot](https://t.me/userinfobot) on Telegram  
+2. It replies with your user ID (format: `123456789`)
 
-1. Message @userinfobot on Telegram
-2. It will reply with your user ID
-3. Copy the numeric user ID
-
-### Step 3: Set Up Google API Key
+### 2️⃣ Google AI Setup (for AI features)
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select existing one
-3. Enable the following APIs:
-   - Generative Language API (for text generation)
-   - Vertex AI API (for image generation)
-4. Go to "Credentials" section
-5. Click "Create Credentials" → "API Key"
-6. Copy the generated API key
-7. (Optional) Restrict the API key to specific APIs for security
+2. Create project or select existing one
+3. Enable these APIs:
+   - **Generative Language API** (for text)
+   - **Vertex AI API** (for images)
+4. Go to **Credentials** → **Create Credentials** → **API Key**
+5. Copy your API key (format: `AIzaSyD...`)
 
-### Step 4: Configure Vercel Environment Variables
+### 3️⃣ Add to Vercel
 
-#### Option A: Via Vercel Dashboard
-1. Go to your project in Vercel dashboard
-2. Click on "Settings"
-3. Click on "Environment Variables"
-4. Add all three variables:
-   - Name: `TELEGRAM_BOT_TOKEN`, Value: Your bot token
-   - Name: `TELEGRAM_USER_ID`, Value: Your user ID
-   - Name: `GOOGLE_API_KEY`, Value: Your Google API key
+**In your Vercel dashboard:**
+1. Go to your project
+2. **Settings** → **Environment Variables**
+3. Click **Add** for each variable:
 
-#### Option B: Via Vercel CLI
+```
+Name: TELEGRAM_BOT_TOKEN
+Value: 1234567890:ABCdef...
+
+Name: TELEGRAM_USER_ID  
+Value: 123456789
+
+Name: GOOGLE_API_KEY
+Value: AIzaSyD...
+```
+
+4. **Redeploy** your site
+
+## 🖥️ Local Development
+
+Create `.env.local` file in your project root:
+
 ```bash
-vercel env add TELEGRAM_BOT_TOKEN
-# Enter your bot token when prompted
+# Copy the example file
+cp .env.example .env.local
 
-vercel env add TELEGRAM_USER_ID
-# Enter your user ID when prompted
-
-vercel env add GOOGLE_API_KEY
-# Enter your Google API key when prompted
+# Edit with your values
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_USER_ID=your_user_id_here
+GOOGLE_API_KEY=your_api_key_here
 ```
 
-### Step 5: Test the Integration
+**Important:** Never commit `.env.local` to git! (It's already in `.gitignore`)
 
-1. Deploy your site to Vercel
-2. Test the features:
-   - **Contact Form**: Go to Support page, submit form, check Telegram
-   - **AI Text**: Go to AI Text page, enter prompt, verify text generation
-   - **AI Images**: Go to AI Images page, enter prompt, verify image generation
+## ✅ Test Your Setup
 
-## Security Notes
+### Test Contact Form:
+1. Go to `/support` page
+2. Fill out contact form  
+3. Submit - check your Telegram for message
 
-- Never commit these tokens/keys to your repository
-- Keep your bot token and API keys secret
-- Only share your user ID if necessary
-- Regularly rotate your tokens/keys if compromised
-- Consider restricting Google API key to specific APIs and referrers
+### Test AI Features:
+1. Go to `/ai-text` page
+2. Enter a prompt, click generate
+3. Go to `/ai-images` page  
+4. Enter a prompt, click generate
 
-## Troubleshooting
+## 🔒 Security Best Practices
 
-### Bot Not Sending Messages
-- Verify bot token is correct
-- Check that user ID is numeric only
-- Ensure you've started a conversation with your bot
-- Check Vercel function logs for errors
+- ✅ Keep your tokens/keys private
+- ✅ Never commit them to git
+- ✅ Rotate keys if compromised
+- ✅ Restrict Google API key to specific APIs (optional)
+- ✅ Use environment variables (never hardcode)
 
-### Environment Variables Not Working
-- Redeploy after setting environment variables
-- Check variable names match exactly (case-sensitive)
-- Verify variables are set for the correct environment (production)
+## 🐛 Troubleshooting
 
-## Example .env.local (for local development)
+| Issue | Solution |
+|-------|----------|
+| **Contact form shows "Server error"** | Check `TELEGRAM_BOT_TOKEN` and `TELEGRAM_USER_ID` are set correctly |
+| **AI features show "Configuration error"** | Check `GOOGLE_API_KEY` is set and APIs are enabled |
+| **Variables not working** | Redeploy after setting environment variables |
+| **Bot not sending messages** | Start a conversation with your bot first |
 
-```env
-TELEGRAM_BOT_TOKEN=1234567890:ABCdefGHIjklMNOpqrsTUVwxYZ123456789
-TELEGRAM_USER_ID=123456789
-GOOGLE_API_KEY=AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
+## 🆘 Need Help?
 
-**Note:** Never commit .env files to your repository. Add them to .gitignore.
+- 📧 **Email**: oladoyeheritage445@gmail.com  
+- 🐛 **Issues**: [GitHub Issues](https://github.com/RayBen445/Portfolio/issues)
+- 📚 **Docs**: [Vercel Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables)
