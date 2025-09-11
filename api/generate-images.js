@@ -70,67 +70,31 @@ export default async function handler(req, res) {
     const genAI = new GoogleGenerativeAI(API_KEY);
     console.log('GoogleGenerativeAI instance created successfully');
 
-    // Generate images using Imagen
-    console.log('Preparing image generation request...');
-    const imageCount = Math.min(Math.max(1, numberOfImages), 8);
-    console.log('Adjusted numberOfImages:', imageCount, '(limited between 1-8)');
-    console.log('Prompt length:', prompt.length);
-    console.log('Prompt preview:', prompt.substring(0, 100) + (prompt.length > 100 ? '...' : ''));
+    // Image generation not currently available
+    console.log('Checking image generation availability...');
+    console.log('Google Generative AI library does not support image generation');
+    console.log('The @google/generative-ai library only supports text generation (Gemini)');
+    console.log('Image generation would require Google Imagen API or alternative service');
     
-    console.log('Starting image generation with Imagen...');
-    const response = await genAI.models.generateImages({
-      model: 'imagen-3.0-generate-001',
-      prompt: prompt,
-      config: {
-        numberOfImages: imageCount,
-      },
-    });
-    
-    console.log('Image generation completed');
-    console.log('Response type:', typeof response);
-    console.log('Response has generatedImages:', !!response.generatedImages);
-    console.log('Generated images count:', response.generatedImages ? response.generatedImages.length : 0);
-
-    // Process the generated images
-    console.log('Processing generated images...');
-    const images = [];
-    let idx = 1;
-    for (const generatedImage of response.generatedImages) {
-      console.log(`Processing image ${idx}...`);
-      console.log(`- Image ${idx} has image property:`, !!generatedImage.image);
-      console.log(`- Image ${idx} has imageBytes:`, !!generatedImage.image?.imageBytes);
-      
-      const imgBytes = generatedImage.image.imageBytes;
-      console.log(`- Image ${idx} bytes length:`, imgBytes ? imgBytes.length : 0);
-      
-      // Convert to base64 for web display
-      const base64Image = `data:image/png;base64,${imgBytes}`;
-      console.log(`- Image ${idx} base64 length:`, base64Image.length);
-      
-      images.push({
-        id: idx,
-        base64: base64Image,
-        filename: `imagen-${idx}.png`
-      });
-      console.log(`- Image ${idx} processed successfully`);
-      idx++;
-    }
-    
-    console.log('All images processed successfully');
-    console.log('Final images array length:', images.length);
-
     const endTime = new Date();
     const duration = endTime - startTime;
-    console.log('=== GENERATE-IMAGES FUNCTION SUCCESS ===');
+    console.log('=== GENERATE-IMAGES FUNCTION - SERVICE UNAVAILABLE ===');
     console.log('End timestamp:', endTime.toISOString());
     console.log('Total duration (ms):', duration);
 
-    return res.status(200).json({ 
-      success: true, 
-      images: images,
+    return res.status(501).json({ 
+      success: false,
+      error: 'Image generation not implemented',
+      details: 'Image generation is currently unavailable. The Google Generative AI library only supports text generation. Image generation requires a different service integration.',
+      availableAlternatives: [
+        'Use AI Text generation instead',
+        'Contact developer for image generation feature requests'
+      ],
       prompt: prompt,
-      count: images.length
+      requestedImages: numberOfImages
     });
+
+
 
   } catch (error) {
     const endTime = new Date();
