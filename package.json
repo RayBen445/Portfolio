@@ -1,0 +1,46 @@
+{
+  "name": "rayben445-portfolio",
+  "version": "1.0.0",
+  "description": "RayBen445's Professional Portfolio - Full-Stack Developer, Economics Student, and AI Explorer",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "build": "echo 'Static site - no build step required'",
+    "preview": "npx serve .",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "portfolio",
+    "developer",
+    "full-stack",
+    "javascript",
+    "html",
+    "css",
+    "vercel",
+    "responsive",
+    "ai",
+    "economics",
+    "google-genai"
+  ],
+  "author": {
+    "name": "Heritage Oladoye (RayBen445)",
+    "email": "oladoyeheritage445@gmail.com",
+    "url": "https://github.com/RayBen445"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RayBen445/Portfolio.git"
+  },
+  "homepage": "https://rayben445-portfolio.vercel.app",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

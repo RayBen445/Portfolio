@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RayBen445 - AI Image Generator | Google GenAI Imagen</title>
+    <meta name="description" content="Generate stunning images using Google's Imagen AI technology - RayBen445's AI Image Generator">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome removed due to CDN blocking - using Unicode icons instead -->
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">RayBen445</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="skills.html" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-images.html" class="nav-link active">AI Images</a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-text.html" class="nav-link">AI Text</a>
+                </li>
+                <li class="nav-item">
+                    <a href="support.html" class="nav-link">Support</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>🎨 AI Image Generator</h1>
+                <p class="hero-subtitle">Create stunning images with <strong style="color: var(--secondary-color);">Google GenAI Imagen</strong></p>
+                <p class="hero-description">Powered by Google's advanced Imagen technology to generate high-quality images from text descriptions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Generation Section -->
+    <section class="section">
+        <div class="container">
+            <div class="generator-card">
+                <div class="form-section">
+                    <h2>✨ Generate Images</h2>
+                    <form id="image-generator-form">
+                        <div class="form-group">
+                            <label for="image-prompt">Describe your image:</label>
+                            <textarea 
+                                id="image-prompt" 
+                                name="prompt" 
+                                placeholder="Robot holding a red skateboard, cyberpunk style, neon lighting..."
+                                rows="4"
+                                maxlength="1000"
+                                required
+                            ></textarea>
+                            <div class="char-counter">
+                                <span id="prompt-char-count">0</span>/1000 characters
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image-count">Number of images:</label>
+                            <select id="image-count" name="numberOfImages">
+                                <option value="1">1 image</option>
+                                <option value="2">2 images</option>
+                                <option value="4" selected>4 images</option>
+                                <option value="6">6 images</option>
+                                <option value="8">8 images</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="generate-btn" id="generate-btn">
+                            <span class="btn-text">🎨 Generate Images</span>
+                            <span class="btn-loading hidden">⏳ Generating...</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Status Messages -->
+                <div id="form-loading" class="form-state hidden">
+                    <div class="loading-icon">⏳</div>
+                    <h3>Generating your images...</h3>
+                    <p>This may take a few moments. Please wait.</p>
+                </div>
+
+                <div id="form-success" class="form-state hidden">
+                    <div class="success-icon">✅</div>
+                    <h3>Images generated successfully!</h3>
+                    <p>Your AI-generated images are ready below.</p>
+                </div>
+
+                <div id="form-error" class="form-state hidden">
+                    <div class="error-icon">❌</div>
+                    <h3>Generation failed</h3>
+                    <p id="error-message">There was an error generating your images. Please try again.</p>
+                </div>
+            </div>
+
+            <!-- Generated Images Display -->
+            <div id="generated-images" class="images-display hidden">
+                <h2>🖼️ Generated Images</h2>
+                <div class="images-grid" id="images-grid">
+                    <!-- Images will be populated here -->
+                </div>
+                <div class="generation-info">
+                    <p><strong>Prompt:</strong> <span id="used-prompt"></span></p>
+                    <p><strong>Images generated:</strong> <span id="image-count-display"></span></p>
+                    <p><strong>Generation time:</strong> <span id="generation-time"></span></p>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="instructions-card">
+                <h3>💡 How to Use</h3>
+                <ul>
+                    <li><strong>Describe your vision:</strong> Be detailed and specific in your prompt</li>
+                    <li><strong>Choose quantity:</strong> Select how many variations you want (1-8)</li>
+                    <li><strong>Wait for magic:</strong> AI will generate high-quality images</li>
+                    <li><strong>Download & share:</strong> Right-click any image to save</li>
+                </ul>
+                
+                <h3>🎯 Tips for Better Results</h3>
+                <ul>
+                    <li>Include style descriptions (e.g., "photorealistic", "cartoon style", "oil painting")</li>
+                    <li>Specify lighting and mood (e.g., "soft lighting", "dramatic shadows")</li>
+                    <li>Add composition details (e.g., "close-up", "wide angle", "portrait")</li>
+                    <li>Mention colors and atmosphere you want</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 RayBen445. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="projects.html">Projects</a>
+                <a href="skills.html">Skills</a>
+                <a href="support.html">Support</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="shared.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('image-generator-form');
+            const promptTextarea = document.getElementById('image-prompt');
+            const charCount = document.getElementById('prompt-char-count');
+            const generateBtn = document.getElementById('generate-btn');
+            const btnText = document.querySelector('.btn-text');
+            const btnLoading = document.querySelector('.btn-loading');
+            
+            // Form states
+            const formLoading = document.getElementById('form-loading');
+            const formSuccess = document.getElementById('form-success');
+            const formError = document.getElementById('form-error');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Results display
+            const generatedImages = document.getElementById('generated-images');
+            const imagesGrid = document.getElementById('images-grid');
+            const usedPrompt = document.getElementById('used-prompt');
+            const imageCountDisplay = document.getElementById('image-count-display');
+            const generationTime = document.getElementById('generation-time');
+
+            // Character counter
+            promptTextarea.addEventListener('input', function() {
+                const count = this.value.length;
+                charCount.textContent = count;
+                
+                if (count > 800) {
+                    charCount.style.color = 'var(--orange-color)';
+                } else if (count > 950) {
+                    charCount.style.color = '#ff4444';
+                } else {
+                    charCount.style.color = 'var(--text-secondary)';
+                }
+            });
+
+            // Form submission
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const prompt = formData.get('prompt').trim();
+                const numberOfImages = parseInt(formData.get('numberOfImages'));
+                
+                if (!prompt) {
+                    showError('Please enter a description for your image.');
+                    return;
+                }
+
+                // Show loading state
+                showLoading();
+                const startTime = Date.now();
+                
+                try {
+                    const response = await fetch('/api/generate-images', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            prompt: prompt,
+                            numberOfImages: numberOfImages
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.details || data.error || 'Failed to generate images');
+                    }
+
+                    // Calculate generation time
+                    const endTime = Date.now();
+                    const duration = ((endTime - startTime) / 1000).toFixed(1);
+
+                    // Show success and display images
+                    showSuccess();
+                    displayImages(data.images, prompt, data.count, duration);
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    showError(error.message);
+                }
+            });
+
+            function showLoading() {
+                hideAllStates();
+                formLoading.classList.remove('hidden');
+                generateBtn.disabled = true;
+                btnText.classList.add('hidden');
+                btnLoading.classList.remove('hidden');
+                generatedImages.classList.add('hidden');
+            }
+
+            function showSuccess() {
+                hideAllStates();
+                formSuccess.classList.remove('hidden');
+                generateBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnLoading.classList.add('hidden');
+            }
+
+            function showError(message) {
+                hideAllStates();
+                formError.classList.remove('hidden');
+                errorMessage.textContent = message;
+                generateBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnLoading.classList.add('hidden');
+            }
+
+            function hideAllStates() {
+                formLoading.classList.add('hidden');
+                formSuccess.classList.add('hidden');
+                formError.classList.add('hidden');
+            }
+
+            function displayImages(images, prompt, count, duration) {
+                // Clear previous images
+                imagesGrid.innerHTML = '';
+                
+                // Populate image grid
+                images.forEach((image, index) => {
+                    const imageDiv = document.createElement('div');
+                    imageDiv.className = 'generated-image';
+                    imageDiv.innerHTML = `
+                        <img src="${image.base64}" alt="Generated image ${index + 1}" loading="lazy">
+                        <div class="image-overlay">
+                            <button onclick="downloadImage('${image.base64}', '${image.filename}')" class="download-btn">
+                                💾 Download
+                            </button>
+                        </div>
+                    `;
+                    imagesGrid.appendChild(imageDiv);
+                });
+
+                // Update info
+                usedPrompt.textContent = prompt;
+                imageCountDisplay.textContent = count;
+                generationTime.textContent = duration + 's';
+                
+                // Show results
+                generatedImages.classList.remove('hidden');
+                
+                // Scroll to results
+                setTimeout(() => {
+                    generatedImages.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+
+            // Make downloadImage available globally
+            window.downloadImage = function(base64Data, filename) {
+                const link = document.createElement('a');
+                link.href = base64Data;
+                link.download = filename;
+                link.click();
+            };
+        });
+    </script>
+</body>
+</html>

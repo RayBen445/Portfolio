@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RayBen445 - AI Text Generator | Google GenAI Gemini</title>
+    <meta name="description" content="Generate intelligent text content using Google's Gemini AI technology - RayBen445's AI Text Generator">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome removed due to CDN blocking - using Unicode icons instead -->
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">RayBen445</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="skills.html" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-images.html" class="nav-link">AI Images</a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-text.html" class="nav-link active">AI Text</a>
+                </li>
+                <li class="nav-item">
+                    <a href="support.html" class="nav-link">Support</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>📝 AI Text Generator</h1>
+                <p class="hero-subtitle">Create intelligent content with <strong style="color: var(--secondary-color);">Google GenAI Gemini</strong></p>
+                <p class="hero-description">Powered by Google's advanced Gemini AI to generate stories, articles, code, and creative content</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Text Generation Section -->
+    <section class="section">
+        <div class="container">
+            <div class="generator-card">
+                <div class="form-section">
+                    <h2>✨ Generate Text</h2>
+                    <form id="text-generator-form">
+                        <div class="form-group">
+                            <label for="text-prompt">What would you like me to write?</label>
+                            <textarea 
+                                id="text-prompt" 
+                                name="prompt" 
+                                placeholder="Write a short story about a banana who wanted to be an astronaut..."
+                                rows="6"
+                                maxlength="2000"
+                                required
+                            ></textarea>
+                            <div class="char-counter">
+                                <span id="prompt-char-count">0</span>/2000 characters
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ai-model">AI Model:</label>
+                            <select id="ai-model" name="model">
+                                <option value="gemini-1.5-flash-latest" selected>Gemini 1.5 Flash (Fast & Efficient)</option>
+                                <option value="gemini-1.5-pro-latest">Gemini 1.5 Pro (Advanced Reasoning)</option>
+                                <option value="gemini-1.0-pro-latest">Gemini 1.0 Pro (Stable)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="generate-btn" id="generate-btn">
+                            <span class="btn-text">📝 Generate Text</span>
+                            <span class="btn-loading hidden">⏳ Generating...</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Status Messages -->
+                <div id="form-loading" class="form-state hidden">
+                    <div class="loading-icon">⏳</div>
+                    <h3>AI is thinking...</h3>
+                    <p>Generating your content. This may take a few moments.</p>
+                </div>
+
+                <div id="form-success" class="form-state hidden">
+                    <div class="success-icon">✅</div>
+                    <h3>Content generated successfully!</h3>
+                    <p>Your AI-generated text is ready below.</p>
+                </div>
+
+                <div id="form-error" class="form-state hidden">
+                    <div class="error-icon">❌</div>
+                    <h3>Generation failed</h3>
+                    <p id="error-message">There was an error generating your text. Please try again.</p>
+                </div>
+            </div>
+
+            <!-- Generated Text Display -->
+            <div id="generated-text" class="text-display hidden">
+                <div class="text-header">
+                    <h2>📖 Generated Content</h2>
+                    <div class="text-actions">
+                        <button onclick="copyText()" class="action-btn" id="copy-btn">
+                            📋 Copy Text
+                        </button>
+                        <button onclick="downloadText()" class="action-btn">
+                            💾 Download
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-content" id="text-content">
+                    <!-- Generated text will be populated here -->
+                </div>
+                
+                <div class="generation-info">
+                    <p><strong>Prompt:</strong> <span id="used-prompt"></span></p>
+                    <p><strong>Model used:</strong> <span id="model-used"></span></p>
+                    <p><strong>Generated:</strong> <span id="generation-timestamp"></span></p>
+                    <p><strong>Character count:</strong> <span id="text-length"></span></p>
+                </div>
+            </div>
+
+            <!-- Examples and Instructions -->
+            <div class="examples-section">
+                <div class="instructions-card">
+                    <h3>💡 What Can I Generate?</h3>
+                    <div class="examples-grid">
+                        <div class="example-category">
+                            <h4>📚 Creative Writing</h4>
+                            <ul>
+                                <li>Short stories and narratives</li>
+                                <li>Poetry and songs</li>
+                                <li>Character descriptions</li>
+                                <li>Dialogue and scripts</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="example-category">
+                            <h4>💼 Business Content</h4>
+                            <ul>
+                                <li>Email templates</li>
+                                <li>Product descriptions</li>
+                                <li>Marketing copy</li>
+                                <li>Professional summaries</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="example-category">
+                            <h4>🎓 Educational</h4>
+                            <ul>
+                                <li>Explanations and tutorials</li>
+                                <li>Study guides</li>
+                                <li>Research summaries</li>
+                                <li>Q&A content</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="example-category">
+                            <h4>💻 Technical</h4>
+                            <ul>
+                                <li>Code explanations</li>
+                                <li>Documentation</li>
+                                <li>Technical guides</li>
+                                <li>API descriptions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-prompts">
+                    <h3>🚀 Quick Start Prompts</h3>
+                    <div class="prompt-buttons">
+                        <button class="prompt-btn" onclick="setPrompt('Write a short story about a robot learning to paint')">
+                            🤖 Robot Artist Story
+                        </button>
+                        <button class="prompt-btn" onclick="setPrompt('Explain quantum computing in simple terms for beginners')">
+                            🔬 Quantum Computing Guide
+                        </button>
+                        <button class="prompt-btn" onclick="setPrompt('Create a recipe for a unique fusion dish combining two different cuisines')">
+                            🍳 Fusion Recipe
+                        </button>
+                        <button class="prompt-btn" onclick="setPrompt('Write a product description for an innovative smart home device')">
+                            🏠 Smart Home Product
+                        </button>
+                        <button class="prompt-btn" onclick="setPrompt('Compose a motivational speech about overcoming challenges in technology')">
+                            💪 Tech Motivation
+                        </button>
+                        <button class="prompt-btn" onclick="setPrompt('Create a dialogue between two AI researchers discussing the future of artificial intelligence')">
+                            🧠 AI Future Dialogue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 RayBen445. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="projects.html">Projects</a>
+                <a href="skills.html">Skills</a>
+                <a href="support.html">Support</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="shared.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('text-generator-form');
+            const promptTextarea = document.getElementById('text-prompt');
+            const charCount = document.getElementById('prompt-char-count');
+            const generateBtn = document.getElementById('generate-btn');
+            const btnText = document.querySelector('.btn-text');
+            const btnLoading = document.querySelector('.btn-loading');
+            
+            // Form states
+            const formLoading = document.getElementById('form-loading');
+            const formSuccess = document.getElementById('form-success');
+            const formError = document.getElementById('form-error');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Results display
+            const generatedText = document.getElementById('generated-text');
+            const textContent = document.getElementById('text-content');
+            const usedPrompt = document.getElementById('used-prompt');
+            const modelUsed = document.getElementById('model-used');
+            const generationTimestamp = document.getElementById('generation-timestamp');
+            const textLength = document.getElementById('text-length');
+
+            let currentGeneratedText = '';
+
+            // Character counter
+            promptTextarea.addEventListener('input', function() {
+                const count = this.value.length;
+                charCount.textContent = count;
+                
+                if (count > 1600) {
+                    charCount.style.color = 'var(--orange-color)';
+                } else if (count > 1900) {
+                    charCount.style.color = '#ff4444';
+                } else {
+                    charCount.style.color = 'var(--text-secondary)';
+                }
+            });
+
+            // Form submission
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(form);
+                const prompt = formData.get('prompt').trim();
+                const model = formData.get('model');
+                
+                if (!prompt) {
+                    showError('Please enter a prompt for text generation.');
+                    return;
+                }
+
+                // Show loading state
+                showLoading();
+                
+                try {
+                    const response = await fetch('/api/generate-text', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            prompt: prompt,
+                            model: model
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.details || data.error || 'Failed to generate text');
+                    }
+
+                    // Show success and display text
+                    showSuccess();
+                    displayText(data.text, prompt, model, data.timestamp);
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    showError(error.message);
+                }
+            });
+
+            function showLoading() {
+                hideAllStates();
+                formLoading.classList.remove('hidden');
+                generateBtn.disabled = true;
+                btnText.classList.add('hidden');
+                btnLoading.classList.remove('hidden');
+                generatedText.classList.add('hidden');
+            }
+
+            function showSuccess() {
+                hideAllStates();
+                formSuccess.classList.remove('hidden');
+                generateBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnLoading.classList.add('hidden');
+            }
+
+            function showError(message) {
+                hideAllStates();
+                formError.classList.remove('hidden');
+                errorMessage.textContent = message;
+                generateBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnLoading.classList.add('hidden');
+            }
+
+            function hideAllStates() {
+                formLoading.classList.add('hidden');
+                formSuccess.classList.add('hidden');
+                formError.classList.add('hidden');
+            }
+
+            function displayText(text, prompt, model, timestamp) {
+                currentGeneratedText = text;
+                
+                // Format and display text with proper line breaks
+                const formattedText = text.replace(/\n/g, '<br>');
+                textContent.innerHTML = formattedText;
+                
+                // Update info
+                usedPrompt.textContent = prompt;
+                modelUsed.textContent = model;
+                generationTimestamp.textContent = new Date(timestamp).toLocaleString();
+                textLength.textContent = text.length.toLocaleString() + ' characters';
+                
+                // Show results
+                generatedText.classList.remove('hidden');
+                
+                // Scroll to results
+                setTimeout(() => {
+                    generatedText.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+
+            // Make functions available globally
+            window.setPrompt = function(prompt) {
+                promptTextarea.value = prompt;
+                promptTextarea.dispatchEvent(new Event('input'));
+                promptTextarea.focus();
+            };
+
+            window.copyText = function() {
+                if (currentGeneratedText) {
+                    navigator.clipboard.writeText(currentGeneratedText).then(() => {
+                        const copyBtn = document.getElementById('copy-btn');
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = '✅ Copied!';
+                        copyBtn.style.background = 'var(--secondary-color)';
+                        
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                            copyBtn.style.background = '';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                        alert('Failed to copy text to clipboard');
+                    });
+                }
+            };
+
+            window.downloadText = function() {
+                if (currentGeneratedText) {
+                    const blob = new Blob([currentGeneratedText], { type: 'text/plain' });
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'ai-generated-text.txt';
+                    link.click();
+                    window.URL.revokeObjectURL(url);
+                }
+            };
+        });
+    </script>
+</body>
+</html>

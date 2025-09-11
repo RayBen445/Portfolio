@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RayBen445 - Home | Full-Stack Developer</title>
+    <meta name="description" content="Home page of RayBen445 (Heritage Oladoye) - Full-Stack Developer, Economics Student, and AI Explorer">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome removed due to CDN blocking - using Unicode icons instead -->
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">RayBen445</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="skills.html" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-images.html" class="nav-link">AI Images</a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-text.html" class="nav-link">AI Text</a>
+                </li>
+                <li class="nav-item">
+                    <a href="support.html" class="nav-link">Support</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop muted>
+        <!-- Using Web Audio API generated tone as fallback -->
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Control Widget -->
+    <div class="music-control" id="musicControl">
+        <div class="music-info">
+            <span class="music-icon">🎵</span>
+            <span class="music-text">Background Music</span>
+        </div>
+        <div class="music-buttons">
+            <button id="playPauseBtn" class="music-btn">▶️</button>
+            <button id="muteBtn" class="music-btn">🔇</button>
+        </div>
+        <div class="volume-control">
+            <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-slider">
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-container">
+            <!-- Brand Header - Using local placeholder -->
+            <div class="brand-header">
+                <div class="company-logo-placeholder">🏢 RayBen445</div>
+            </div>
+            
+            <!-- Profile Section - Using local placeholder -->
+            <div class="profile-section">
+                <div class="profile-image-placeholder">👨‍💻</div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">Hi, I'm RayBen445 👋</h1>
+                <div class="hero-subtitle">
+                    <span class="role">Full-Stack Developer</span>
+                    <span class="separator">|</span>
+                    <span class="role">Economics Student</span>
+                    <span class="separator">|</span>
+                    <span class="role">AI Explorer</span>
+                </div>
+                <p class="hero-description">
+                    <em>✨ Turning ideas into reality, one commit at a time ✨</em>
+                </p>
+                
+                <!-- Real-time Date & Time -->
+                <div class="datetime-widget">
+                    <p><strong>📅 Current Date:</strong> <span id="current-date"></span></p>
+                    <p><strong>🕒 Live Time:</strong> <span id="current-time"></span></p>
+                </div>
+                
+                <!-- Daily Quote -->
+                <div class="daily-quote">
+                    <p id="daily-quote-text">Loading daily inspiration...</p>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="projects.html" class="btn btn-primary">View Projects</a>
+                    <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">🚀 About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Hi, I'm <strong>RayBen445</strong> (Heritage Oladoye), a passionate full-stack developer and 200-level Economics student at Ladoke Akintola University of Technology (LAUTECH). I specialize in building intelligent solutions that bridge technology and real-world applications.
+                    </p>
+                    <div class="current-focus">
+                        <h3>Current Focus:</h3>
+                        <ul>
+                            <li>🤖 Multi-AI Telegram bots and automation</li>
+                            <li>💹 Economics-focused web applications</li>
+                            <li>🔗 Blockchain and smart contract development</li>
+                            <li>📊 Data analysis and visualization tools</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Features Section -->
+    <section class="interactive-features">
+        <div class="container">
+            <h2 class="section-title">🎮 Interactive Features</h2>
+            
+            <!-- JavaScript Code Playground -->
+            <div class="feature-card">
+                <h3><i class="fab fa-js-square"></i> JavaScript Playground</h3>
+                <p>Try out some JavaScript code right here!</p>
+                <div class="code-playground">
+                    <textarea id="code-input" placeholder="// Enter your JavaScript code here
+console.log('Hello, World!');
+const greeting = 'Welcome to my portfolio!';
+console.log(greeting);
+
+// Try some math
+const result = 42 * 2;
+console.log(`The answer is: ${result}`);"></textarea>
+                    <button onclick="runCode()" class="btn btn-primary">Run Code</button>
+                    <div id="code-output"></div>
+                </div>
+            </div>
+
+            <!-- Music Activity Widget - Simplified -->
+            <div class="feature-card">
+                <h3>🎵 Currently Listening</h3>
+                <div class="music-widget">
+                    <div class="music-placeholder">
+                        <p>🎵 Music integration not available in this environment</p>
+                        <p>Visit my social profiles for music activity!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Integration -->
+            <div class="feature-card">
+                <h3><i class="fas fa-share-alt"></i> Connect With Me</h3>
+                <div class="social-badges">
+                    <a href="https://twitter.com/RayBen445" target="_blank" class="social-badge twitter">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
+                    <a href="https://dev.to/rayben445" target="_blank" class="social-badge dev">
+                        <i class="fab fa-dev"></i> Dev.to
+                    </a>
+                    <a href="https://medium.com/@rayben445" target="_blank" class="social-badge medium">
+                        <i class="fab fa-medium"></i> Medium
+                    </a>
+                    <a href="https://linkedin.com/in/heritage-oladoye" target="_blank" class="social-badge linkedin">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://beacons.ai/professor.coolsystems" target="_blank" class="social-badge beacons">
+                        <i class="fas fa-link"></i> Beacons.ai
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 RayBen445. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="projects.html">Projects</a>
+                    <a href="skills.html">Skills</a>
+                    <a href="ai-images.html">AI Images</a>
+                    <a href="ai-text.html">AI Text</a>
+                    <a href="support.html">Support</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="shared.js"></script>
+    <script>
+        // Background Music Control
+        document.addEventListener('DOMContentLoaded', function() {
+            // Web Audio API for generating background music
+            let audioContext = null;
+            let oscillator = null;
+            let gainNode = null;
+            let isPlaying = false;
+            let isMuted = false;
+
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const muteBtn = document.getElementById('muteBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const musicControl = document.getElementById('musicControl');
+
+            // Initialize Web Audio API
+            function initAudio() {
+                try {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    return true;
+                } catch (error) {
+                    console.log('Web Audio API not supported');
+                    return false;
+                }
+            }
+
+            // Create a pleasant ambient sound
+            function createBackgroundMusic() {
+                if (!audioContext) return;
+
+                // Create oscillators for ambient sound
+                const oscillator1 = audioContext.createOscillator();
+                const oscillator2 = audioContext.createOscillator();
+                const gainNode1 = audioContext.createGain();
+                const gainNode2 = audioContext.createGain();
+                const masterGain = audioContext.createGain();
+
+                // Set frequencies for a pleasant ambient chord
+                oscillator1.frequency.setValueAtTime(220, audioContext.currentTime); // A3
+                oscillator2.frequency.setValueAtTime(330, audioContext.currentTime); // E4
+                
+                // Use sine waves for smooth sound
+                oscillator1.type = 'sine';
+                oscillator2.type = 'sine';
+
+                // Set volumes
+                gainNode1.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode2.gain.setValueAtTime(0.08, audioContext.currentTime);
+                masterGain.gain.setValueAtTime(volumeSlider.value / 100, audioContext.currentTime);
+
+                // Connect the audio graph
+                oscillator1.connect(gainNode1);
+                oscillator2.connect(gainNode2);
+                gainNode1.connect(masterGain);
+                gainNode2.connect(masterGain);
+                masterGain.connect(audioContext.destination);
+
+                // Add slight frequency modulation for movement
+                const lfo = audioContext.createOscillator();
+                const lfoGain = audioContext.createGain();
+                lfo.frequency.setValueAtTime(0.5, audioContext.currentTime);
+                lfoGain.gain.setValueAtTime(2, audioContext.currentTime);
+                lfo.connect(lfoGain);
+                lfoGain.connect(oscillator1.frequency);
+
+                // Start oscillators
+                oscillator1.start();
+                oscillator2.start();
+                lfo.start();
+
+                // Store references
+                oscillator = { osc1: oscillator1, osc2: oscillator2, lfo: lfo };
+                gainNode = masterGain;
+
+                return true;
+            }
+
+            // Stop background music
+            function stopBackgroundMusic() {
+                if (oscillator) {
+                    try {
+                        oscillator.osc1.stop();
+                        oscillator.osc2.stop();
+                        oscillator.lfo.stop();
+                    } catch (error) {
+                        // Oscillators already stopped
+                    }
+                    oscillator = null;
+                }
+            }
+
+            // Play/Pause functionality
+            playPauseBtn.addEventListener('click', async function() {
+                if (!audioContext) {
+                    if (!initAudio()) {
+                        alert('Web Audio API not supported in your browser');
+                        return;
+                    }
+                }
+
+                // Resume audio context if needed (required for some browsers)
+                if (audioContext.state === 'suspended') {
+                    await audioContext.resume();
+                }
+
+                if (!isPlaying) {
+                    if (createBackgroundMusic()) {
+                        isPlaying = true;
+                        playPauseBtn.textContent = '⏸️';
+                        playPauseBtn.classList.add('playing');
+                    }
+                } else {
+                    stopBackgroundMusic();
+                    isPlaying = false;
+                    playPauseBtn.textContent = '▶️';
+                    playPauseBtn.classList.remove('playing');
+                }
+            });
+
+            // Mute/Unmute functionality
+            muteBtn.addEventListener('click', function() {
+                isMuted = !isMuted;
+                muteBtn.textContent = isMuted ? '🔇' : '🔊';
+                
+                if (gainNode) {
+                    gainNode.gain.setValueAtTime(
+                        isMuted ? 0 : volumeSlider.value / 100, 
+                        audioContext.currentTime
+                    );
+                }
+                
+                if (isMuted) {
+                    muteBtn.style.background = '#ff4444';
+                } else {
+                    muteBtn.style.background = 'transparent';
+                }
+            });
+
+            // Volume control
+            volumeSlider.addEventListener('input', function() {
+                const volume = this.value / 100;
+                
+                if (gainNode && !isMuted) {
+                    gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
+                }
+                
+                // Update mute button based on volume
+                if (this.value == 0) {
+                    muteBtn.textContent = '🔇';
+                } else {
+                    muteBtn.textContent = '🔊';
+                }
+            });
+
+            // Auto-start music on first user interaction
+            let userInteracted = false;
+            const enableAutoPlay = async () => {
+                if (!userInteracted) {
+                    userInteracted = true;
+                    
+                    if (!audioContext) {
+                        initAudio();
+                    }
+                    
+                    if (audioContext && audioContext.state === 'suspended') {
+                        await audioContext.resume();
+                    }
+                    
+                    // Auto-start the music
+                    setTimeout(() => {
+                        if (!isPlaying) {
+                            playPauseBtn.click();
+                        }
+                    }, 500);
+                }
+            };
+
+            // Listen for user interactions
+            document.addEventListener('click', enableAutoPlay, { once: true });
+            document.addEventListener('keydown', enableAutoPlay, { once: true });
+        });
+
+        // JavaScript playground functionality
+        function runCode() {
+            const code = document.getElementById('code-input').value;
+            const output = document.getElementById('code-output');
+            
+            // Clear previous output
+            output.innerHTML = '';
+            
+            // Create a custom console
+            const customConsole = {
+                log: function(...args) {
+                    const div = document.createElement('div');
+                    div.className = 'console-output';
+                    div.textContent = args.map(arg => 
+                        typeof arg === 'object' ? JSON.stringify(arg) : String(arg)
+                    ).join(' ');
+                    output.appendChild(div);
+                },
+                error: function(...args) {
+                    const div = document.createElement('div');
+                    div.className = 'console-error';
+                    div.textContent = 'Error: ' + args.join(' ');
+                    output.appendChild(div);
+                }
+            };
+            
+            try {
+                // Replace console with custom console
+                const wrappedCode = `
+                    (function() {
+                        const console = arguments[0];
+                        ${code}
+                    })
+                `;
+                const func = new Function('return ' + wrappedCode)();
+                func(customConsole);
+            } catch (error) {
+                customConsole.error(error.message);
+            }
+        }
+    </script>
+</body>
+</html>
