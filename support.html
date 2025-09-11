@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RayBen445 - Support | Get Help</title>
+    <meta name="description" content="Get support and assistance from RayBen445 - Contact for help with projects or collaborations">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">RayBen445</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="skills.html" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="support.html" class="nav-link">Support</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Support Hero Section -->
+    <section class="support-hero">
+        <div class="container">
+            <div class="support-hero-content">
+                <h1 class="support-title">🛠️ Get Support</h1>
+                <p class="support-subtitle">Need help with my projects, want to collaborate, or have questions? I'm here to help!</p>
+                
+                <div class="support-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Quick Response</h3>
+                        <p>Usually respond within 24 hours</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Collaborative</h3>
+                        <p>Open to partnerships and mentoring</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Solution-Oriented</h3>
+                        <p>Focus on practical solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Form Section -->
+    <section class="support-form-section">
+        <div class="container">
+            <div class="support-form-container">
+                <div class="form-header">
+                    <h2>📧 Send Me a Message</h2>
+                    <p>Fill out the form below and I'll get back to you as soon as possible. Your message will be sent directly to my personal Telegram for immediate notification.</p>
+                </div>
+
+                <form id="support-form" class="support-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">
+                            <i class="fas fa-user"></i>
+                            Your Name *
+                        </label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-input" 
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <i class="fas fa-envelope"></i>
+                            Email Address *
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="your.email@example.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">
+                            <i class="fas fa-tag"></i>
+                            Subject
+                        </label>
+                        <select id="subject" name="subject" class="form-select">
+                            <option value="">Select a topic (optional)</option>
+                            <option value="Project Collaboration">🤝 Project Collaboration</option>
+                            <option value="Technical Support">🔧 Technical Support</option>
+                            <option value="Job Opportunity">💼 Job Opportunity</option>
+                            <option value="Mentorship">🎓 Mentorship Request</option>
+                            <option value="Bug Report">🐛 Bug Report</option>
+                            <option value="Feature Request">💡 Feature Request</option>
+                            <option value="General Inquiry">❓ General Inquiry</option>
+                            <option value="Other">📋 Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">
+                            <i class="fas fa-comment-dots"></i>
+                            Your Message *
+                        </label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            class="form-textarea" 
+                            placeholder="Describe your question, request, or how I can help you..."
+                            rows="8"
+                            required
+                        ></textarea>
+                        <div class="character-count">
+                            <span id="char-count">0</span> / 2000 characters
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            <i class="fas fa-undo"></i>
+                            Clear Form
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Loading and Success States -->
+                <div id="form-loading" class="form-state hidden">
+                    <div class="loading-spinner"></div>
+                    <p>Sending your message...</p>
+                </div>
+
+                <div id="form-success" class="form-state hidden">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Message Sent Successfully!</h3>
+                    <p>Thank you for reaching out. I've received your message and will get back to you soon.</p>
+                    <button class="btn btn-primary" onclick="resetForm()">Send Another Message</button>
+                </div>
+
+                <div id="form-error" class="form-state hidden">
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Oops! Something went wrong</h3>
+                    <p id="error-message">There was an error sending your message. Please try again.</p>
+                    <button class="btn btn-primary" onclick="resetForm()">Try Again</button>
+                </div>
+            </div>
+
+            <!-- Support Alternatives -->
+            <div class="support-alternatives">
+                <h3>🌐 Alternative Contact Methods</h3>
+                <div class="alternatives-grid">
+                    <div class="alternative-card">
+                        <i class="fab fa-telegram"></i>
+                        <h4>Telegram</h4>
+                        <p>Direct messaging for quick questions</p>
+                        <a href="https://t.me/RayBen445" target="_blank" class="alt-link">@RayBen445</a>
+                    </div>
+                    <div class="alternative-card">
+                        <i class="fab fa-github"></i>
+                        <h4>GitHub Issues</h4>
+                        <p>Report bugs or request features</p>
+                        <a href="https://github.com/RayBen445" target="_blank" class="alt-link">View Repositories</a>
+                    </div>
+                    <div class="alternative-card">
+                        <i class="fab fa-linkedin"></i>
+                        <h4>LinkedIn</h4>
+                        <p>Professional networking and opportunities</p>
+                        <a href="https://linkedin.com/in/heritage-oladoye" target="_blank" class="alt-link">Connect</a>
+                    </div>
+                    <div class="alternative-card">
+                        <i class="fas fa-link"></i>
+                        <h4>Beacons.ai</h4>
+                        <p>All my links in one place</p>
+                        <a href="https://beacons.ai/professor.coolsystems" target="_blank" class="alt-link">Visit Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h3>🙋‍♂️ Frequently Asked Questions</h3>
+                <div class="faq-grid">
+                    <details class="faq-item">
+                        <summary>How quickly do you respond to messages?</summary>
+                        <p>I typically respond within 24 hours. For urgent matters, you can reach me directly on Telegram for faster response.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can you help with my coding project?</summary>
+                        <p>Absolutely! I'm always open to helping fellow developers. Provide details about your project and specific challenges you're facing.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Are you available for freelance work?</summary>
+                        <p>Yes, I'm open to freelance opportunities, especially projects involving full-stack development, AI integration, or economics-related applications.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Do you provide mentorship?</summary>
+                        <p>I enjoy mentoring fellow students and junior developers. Feel free to reach out with specific questions or areas where you need guidance.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Can I collaborate on your open-source projects?</summary>
+                        <p>Definitely! Check out my GitHub repositories and feel free to contribute. Open an issue or submit a pull request to get started.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What technologies do you work with?</summary>
+                        <p>I work primarily with JavaScript/TypeScript, React, Node.js, Python, and various AI/ML frameworks. Check my Skills page for a complete list.</p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 RayBen445. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="skills.html">Skills</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="shared.js"></script>
+    <script>
+        // Character counter for message textarea
+        const messageTextarea = document.getElementById('message');
+        const charCount = document.getElementById('char-count');
+        
+        messageTextarea.addEventListener('input', function() {
+            const count = this.value.length;
+            charCount.textContent = count;
+            
+            if (count > 2000) {
+                charCount.style.color = '#ff4757';
+                this.value = this.value.substring(0, 2000);
+                charCount.textContent = '2000';
+            } else {
+                charCount.style.color = '#00cfff';
+            }
+        });
+
+        // Form submission
+        document.getElementById('support-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name').trim(),
+                email: formData.get('email').trim(),
+                subject: formData.get('subject') || 'No subject',
+                message: formData.get('message').trim()
+            };
+            
+            // Validation
+            if (!data.name || !data.email || !data.message) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            if (data.message.length > 2000) {
+                showNotification('Message is too long. Maximum 2000 characters allowed.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            showFormState('loading');
+            
+            try {
+                const response = await fetch('/api/send-message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showFormState('success');
+                    showNotification('Message sent successfully!', 'success');
+                } else {
+                    throw new Error(result.details || result.error || 'Failed to send message');
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+                document.getElementById('error-message').textContent = error.message;
+                showFormState('error');
+                showNotification('Failed to send message. Please try again.', 'error');
+            }
+        });
+
+        function showFormState(state) {
+            // Hide all states
+            document.getElementById('support-form').classList.add('hidden');
+            document.getElementById('form-loading').classList.add('hidden');
+            document.getElementById('form-success').classList.add('hidden');
+            document.getElementById('form-error').classList.add('hidden');
+            
+            // Show selected state
+            if (state === 'form') {
+                document.getElementById('support-form').classList.remove('hidden');
+            } else {
+                document.getElementById(`form-${state}`).classList.remove('hidden');
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('support-form').reset();
+            document.getElementById('char-count').textContent = '0';
+            showFormState('form');
+        }
+
+        // Add smooth transitions for form states
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation classes
+            const formStates = document.querySelectorAll('.form-state');
+            formStates.forEach(state => {
+                state.style.transition = 'all 0.3s ease';
+            });
+        });
+    </script>
+
+    <style>
+        /* Support page specific styles */
+        .support-hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .support-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00cfff, #00ff99);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .support-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .support-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 207, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: #00cfff;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h3 {
+            margin-bottom: 0.5rem;
+            color: #00ff99;
+        }
+
+        .support-form-section {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #0a0f1c 0%, #1a202c 100%);
+        }
+
+        .support-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(26, 32, 44, 0.8);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(0, 207, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-header h2 {
+            color: #00cfff;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .support-form {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: #00ff99;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-label i {
+            margin-right: 0.5rem;
+            color: #00cfff;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(0, 207, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(10, 15, 28, 0.8);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #00cfff;
+            box-shadow: 0 0 20px rgba(0, 207, 255, 0.3);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+
+        .character-count {
+            text-align: right;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #00cfff;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .btn-submit {
+            min-width: 200px;
+            position: relative;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-state {
+            text-align: center;
+            padding: 3rem;
+            border-radius: 15px;
+            background: rgba(26, 32, 44, 0.8);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(0, 207, 255, 0.3);
+            border-top: 4px solid #00cfff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-icon,
+        .error-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-icon {
+            color: #00ff99;
+        }
+
+        .error-icon {
+            color: #ff4757;
+        }
+
+        .support-alternatives {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .support-alternatives h3 {
+            color: #00cfff;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .alternatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .alternative-card {
+            background: rgba(26, 32, 44, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 207, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .alternative-card:hover {
+            transform: translateY(-5px);
+            border-color: #00cfff;
+            box-shadow: 0 10px 30px rgba(0, 207, 255, 0.2);
+        }
+
+        .alternative-card i {
+            font-size: 2.5rem;
+            color: #00cfff;
+            margin-bottom: 1rem;
+        }
+
+        .alternative-card h4 {
+            color: #00ff99;
+            margin-bottom: 0.5rem;
+        }
+
+        .alt-link {
+            color: #00cfff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .alt-link:hover {
+            text-decoration: underline;
+        }
+
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-section h3 {
+            color: #00cfff;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(26, 32, 44, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 207, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #00ff99;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item summary:hover {
+            background: rgba(0, 207, 255, 0.1);
+        }
+
+        .faq-item p {
+            padding: 0 1.5rem 1.5rem;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .support-title {
+                font-size: 2.5rem;
+            }
+
+            .support-form-container {
+                margin: 0 1rem;
+                padding: 2rem;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .btn-submit {
+                min-width: auto;
+            }
+        }
+    </style>
+</body>
+</html>

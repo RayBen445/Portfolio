@@ -2,7 +2,40 @@
 
 > **Full-Stack Developer** | **Economics Student** | **AI Explorer**
 
-*Welcome to my digital portfolio - where innovation meets implementation*
+*Welcome to my comprehensive multi-page portfolio - where innovation meets implementation*
+
+## 🌟 Portfolio Structure
+
+This portfolio has been transformed into a beautiful multi-page web application:
+
+- **🏠 [Home](index.html)** - Hero section, about me, and interactive features
+- **🚀 [Projects](projects.html)** - Gallery and comprehensive project showcase
+- **⚡ [Skills](skills.html)** - Technologies, proficiency levels, and GitHub stats
+- **🛠️ [Support](support.html)** - Contact form with direct Telegram integration
+- **📬 [Contact](contact.html)** - Professional contacts and collaboration opportunities
+
+## ✨ New Features
+
+### 🛠️ Support Page with Telegram Integration
+- **Beautiful contact form** with real-time validation
+- **Direct Telegram notifications** for immediate response
+- **Environment variable configuration** for secure bot integration
+- **Multiple contact methods** and FAQ section
+- **Professional inquiry handling** with categorized subjects
+
+### 📱 Multi-Page Architecture
+- **Responsive navigation** with mobile hamburger menu
+- **Consistent branding** across all pages
+- **Shared JavaScript utilities** for common functionality
+- **Optimized loading** with page-specific content
+- **SEO-friendly structure** with proper meta tags
+
+### 🎨 Enhanced User Experience
+- **Smooth animations** and hover effects
+- **Interactive elements** including code playground
+- **Real-time date/time display** with ordinal formatting
+- **Daily rotating quotes** for inspiration
+- **Scroll-to-top functionality** on all pages
 
 ---
 
