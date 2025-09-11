@@ -60,6 +60,155 @@
     margin: 10px 0;
 }
 
+/* Background Music Control Widget */
+.music-control {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+    box-shadow: 0 8px 30px rgba(0,207,255,0.2);
+    transition: all 0.3s ease;
+    min-width: 280px;
+}
+
+.music-control:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0,207,255,0.3);
+}
+
+.music-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.music-icon {
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.music-text {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.music-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.music-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-btn:hover {
+    background: var(--primary-color);
+    color: #000;
+    transform: scale(1.05);
+}
+
+.music-btn.playing {
+    background: var(--secondary-color);
+    color: #000;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+}
+
+.volume-slider {
+    width: 60px;
+    height: 4px;
+    background: var(--card-bg);
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    background: var(--secondary-color);
+    transform: scale(1.2);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+/* Responsive design for music control */
+@media (max-width: 768px) {
+    .music-control {
+        top: 60px;
+        right: 10px;
+        padding: 12px;
+        min-width: 250px;
+        gap: 10px;
+    }
+    
+    .music-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    
+    .volume-slider {
+        width: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .music-control {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 10px auto;
+        width: calc(100% - 20px);
+        min-width: auto;
+    }
+}
+
 /* AI Generator Pages Styles */
 .generator-card {
     background: var(--card-bg);
