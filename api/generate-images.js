@@ -1,33 +1,59 @@
 // Vercel serverless function for Google GenAI Image Generation (Imagen)
-import { GoogleGenerativeAI } from "@google/generative-ai";
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
+  const startTime = new Date();
+  console.log('=== GENERATE-IMAGES FUNCTION START ===');
+  console.log('Timestamp:', startTime.toISOString());
+  console.log('Request method:', req.method);
+  console.log('Request headers present:', Object.keys(req.headers || {}));
+  
   // Set CORS headers
+  console.log('Setting CORS headers...');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   
   if (req.method === 'OPTIONS') {
+    console.log('Handling OPTIONS request - returning 200');
     return res.status(200).end();
   }
 
   if (req.method !== 'POST') {
+    console.log('Invalid method received:', req.method);
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  console.log('POST request confirmed, processing...');
+
   try {
+    console.log('Starting request body parsing...');
+    console.log('Request body exists:', !!req.body);
+    console.log('Request body type:', typeof req.body);
+    
     const { prompt, numberOfImages = 4 } = req.body;
+    
+    console.log('Extracted parameters:');
+    console.log('- prompt present:', !!prompt, 'length:', prompt ? prompt.length : 0);
+    console.log('- numberOfImages:', numberOfImages, 'type:', typeof numberOfImages);
 
     // Validate required fields
+    console.log('Validating required fields...');
     if (!prompt) {
+      console.log('Validation failed - missing prompt');
       return res.status(400).json({ 
         error: 'Missing required fields',
         details: 'Prompt is required' 
       });
     }
+    console.log('Field validation passed');
 
     // Get environment variable
+    console.log('Checking environment variables...');
     const API_KEY = process.env.GOOGLE_API_KEY;
+    
+    console.log('Environment variables status:');
+    console.log('- GOOGLE_API_KEY present:', !!API_KEY, 'length:', API_KEY ? API_KEY.length : 0);
 
     if (!API_KEY) {
       console.error('Missing GOOGLE_API_KEY environment variable');
@@ -36,55 +62,70 @@ export default async function handler(req, res) {
         details: 'Please contact the administrator' 
       });
     }
+    console.log('Environment variables validation passed');
 
     // Initialize Google GenAI
+    console.log('Initializing Google GenAI...');
+    console.log('Using API key prefix:', API_KEY.substring(0, 10) + '***');
     const genAI = new GoogleGenerativeAI(API_KEY);
+    console.log('GoogleGenerativeAI instance created successfully');
 
-    // Generate images using Imagen
-    const response = await genAI.models.generateImages({
-      model: 'imagen-3.0-generate-001',
+    // Image generation not currently available
+    console.log('Checking image generation availability...');
+    console.log('Google Generative AI library does not support image generation');
+    console.log('The @google/generative-ai library only supports text generation (Gemini)');
+    console.log('Image generation would require Google Imagen API or alternative service');
+    
+    const endTime = new Date();
+    const duration = endTime - startTime;
+    console.log('=== GENERATE-IMAGES FUNCTION - SERVICE UNAVAILABLE ===');
+    console.log('End timestamp:', endTime.toISOString());
+    console.log('Total duration (ms):', duration);
+
+    return res.status(501).json({ 
+      success: false,
+      error: 'Image generation not implemented',
+      details: 'Image generation is currently unavailable. The Google Generative AI library only supports text generation. Image generation requires a different service integration.',
+      availableAlternatives: [
+        'Use AI Text generation instead',
+        'Contact developer for image generation feature requests'
+      ],
       prompt: prompt,
-      config: {
-        numberOfImages: Math.min(Math.max(1, numberOfImages), 8), // Limit between 1-8
-      },
+      requestedImages: numberOfImages
     });
 
-    // Process the generated images
-    const images = [];
-    let idx = 1;
-    for (const generatedImage of response.generatedImages) {
-      const imgBytes = generatedImage.image.imageBytes;
-      // Convert to base64 for web display
-      const base64Image = `data:image/png;base64,${imgBytes}`;
-      images.push({
-        id: idx,
-        base64: base64Image,
-        filename: `imagen-${idx}.png`
-      });
-      idx++;
-    }
 
-    return res.status(200).json({ 
-      success: true, 
-      images: images,
-      prompt: prompt,
-      count: images.length
-    });
 
   } catch (error) {
-    console.error('Error generating images:', error);
+    const endTime = new Date();
+    const duration = endTime - startTime;
+    console.error('=== GENERATE-IMAGES FUNCTION ERROR ===');
+    console.error('Error timestamp:', endTime.toISOString());
+    console.error('Total duration before error (ms):', duration);
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
+    console.error('Error details:', {
+      cause: error.cause,
+      code: error.code,
+      status: error.status,
+      statusText: error.statusText
+    });
     
     // Handle specific Google API errors
+    console.log('Analyzing error type...');
     if (error.message.includes('API key')) {
+      console.error('API key related error detected');
       return res.status(401).json({ 
         error: 'Invalid API key',
         details: 'Please check your Google API configuration' 
       });
     }
     
+    console.error('General error, returning 500');
     return res.status(500).json({ 
       error: 'Image generation failed',
       details: error.message || 'Please try again later' 
     });
   }
-}
+};
