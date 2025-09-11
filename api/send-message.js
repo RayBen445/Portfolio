@@ -82,28 +82,41 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // Create a simplified message format
+    // Function to escape characters for Telegram's MarkdownV2
+    const escapeMarkdown = (text) => {
+      if (!text) return '';
+      // Escape all reserved characters
+      return text.replace(/[_*[\]()~`>#+\-=|{}.!]/g, '\\$&');
+    };
+
+    // Create a robust message format with escaped content
     console.log('Creating Telegram message');
-    const telegramMessage = `🌟 NEW PORTFOLIO MESSAGE
+    const escapedName = escapeMarkdown(name);
+    const escapedEmail = escapeMarkdown(email);
+    const escapedSubject = escapeMarkdown(subject || 'General Inquiry');
+    const escapedMessage = escapeMarkdown(message);
 
-👤 From: ${name}
-📧 Email: ${email}
-📋 Subject: ${subject || 'General Inquiry'}
+    const telegramMessage = `*🌟 NEW PORTFOLIO MESSAGE*
 
-💬 Message:
-${message}
+👤 *From:* ${escapedName}
+📧 *Email:* ${escapedEmail}
+📋 *Subject:* ${escapedSubject}
 
-⏰ Received: ${new Date().toLocaleString()}`;
+💬 *Message:*
+${escapedMessage}
+
+⏰ *Received:* \`${new Date().toLocaleString()}\``;
 
     console.log('Message created, length:', telegramMessage.length);
 
     // Send to Telegram API
     const telegramUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-    console.log('Sending to Telegram API...');
+    console.log('Sending to Telegram API with MarkdownV2 parse mode...');
     
     const requestData = {
       chat_id: CHAT_ID,
-      text: telegramMessage
+      text: telegramMessage,
+      parse_mode: 'MarkdownV2'
     };
 
     const response = await fetch(telegramUrl, {

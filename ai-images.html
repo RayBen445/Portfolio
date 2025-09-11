@@ -64,37 +64,43 @@
                 <div class="form-section">
                     <h2>✨ Generate Images</h2>
                     <form id="image-generator-form">
-                        <div class="form-group">
-                            <label for="image-prompt">Describe your image:</label>
-                            <textarea 
-                                id="image-prompt" 
-                                name="prompt" 
-                                placeholder="Robot holding a red skateboard, cyberpunk style, neon lighting..."
-                                rows="4"
-                                maxlength="1000"
-                                required
-                            ></textarea>
-                            <div class="char-counter">
-                                <span id="prompt-char-count">0</span>/1000 characters
-                            </div>
+                        <div class="feature-disabled-notice">
+                            <h3>🚧 Feature Under Development 🚧</h3>
+                            <p>
+                                The AI Image Generation feature is currently unavailable as we upgrade our systems to a more powerful model.
+                            </p>
+                            <p>
+                                We are working hard to bring this feature back online soon. Please check back later! In the meantime, feel free to use the <a href="ai-text.html">AI Text Generator</a>.
+                            </p>
                         </div>
-
-                        <div class="form-group">
-                            <label for="image-count">Number of images:</label>
-                            <select id="image-count" name="numberOfImages">
-                                <option value="1">1 image</option>
-                                <option value="2">2 images</option>
-                                <option value="4" selected>4 images</option>
-                                <option value="6">6 images</option>
-                                <option value="8">8 images</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" class="generate-btn" id="generate-btn">
-                            <span class="btn-text">🎨 Generate Images</span>
-                            <span class="btn-loading hidden">⏳ Generating...</span>
-                        </button>
                     </form>
+                    <style>
+                        .feature-disabled-notice {
+                            text-align: center;
+                            padding: 2rem;
+                            background-color: rgba(255, 255, 255, 0.05);
+                            border: 1px dashed var(--secondary-color);
+                            border-radius: 8px;
+                            color: var(--text-secondary);
+                        }
+                        .feature-disabled-notice h3 {
+                            color: var(--secondary-color);
+                            margin-bottom: 1rem;
+                        }
+                        .feature-disabled-notice a {
+                            color: var(--primary-color);
+                            text-decoration: none;
+                            font-weight: bold;
+                        }
+                        .feature-disabled-notice a:hover {
+                            text-decoration: underline;
+                        }
+                        /* Hide the original form elements */
+                        #image-generator-form .form-group,
+                        #image-generator-form .generate-btn {
+                            display: none;
+                        }
+                    </style>
                 </div>
 
                 <!-- Status Messages -->
