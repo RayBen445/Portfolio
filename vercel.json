@@ -19,47 +19,42 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/projects",
+      "destination": "/projects.html"
     },
     {
-      "src": "/(.*\\.(css|js|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot))",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
+      "source": "/skills", 
+      "destination": "/skills.html"
     },
     {
-      "src": "/",
-      "dest": "/index.html"
+      "source": "/ai-images",
+      "destination": "/ai-images.html"
     },
     {
-      "src": "/projects",
-      "dest": "/projects.html"
+      "source": "/ai-text",
+      "destination": "/ai-text.html"
     },
     {
-      "src": "/skills", 
-      "dest": "/skills.html"
+      "source": "/support",
+      "destination": "/support.html"
     },
     {
-      "src": "/ai-images",
-      "dest": "/ai-images.html"
-    },
-    {
-      "src": "/ai-text",
-      "dest": "/ai-text.html"
-    },
-    {
-      "src": "/support",
-      "dest": "/support.html"
-    },
-    {
-      "src": "/contact",
-      "dest": "/contact.html"
+      "source": "/contact",
+      "destination": "/contact.html"
     }
   ],
   "headers": [
+    {
+      "source": "/(.*\\.(css|js|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot))",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
