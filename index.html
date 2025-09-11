@@ -49,6 +49,7 @@
     <!-- Hero Section -->
     <!-- Background Music -->
     <audio id="backgroundMusic" loop muted>
+        <source src="https://files.catbox.moe/4vb6xe.mp3" type="audio/mpeg">
         <!-- Using Web Audio API generated tone as fallback -->
         Your browser does not support the audio element.
     </audio>
@@ -214,17 +215,30 @@ console.log(`The answer is: ${result}`);"></textarea>
     <script>
         // Background Music Control
         document.addEventListener('DOMContentLoaded', function() {
-            // Web Audio API for generating background music
+            // Audio elements
+            const backgroundMusic = document.getElementById('backgroundMusic');
             let audioContext = null;
             let oscillator = null;
             let gainNode = null;
             let isPlaying = false;
             let isMuted = false;
+            let useWebAudioFallback = false;
 
             const playPauseBtn = document.getElementById('playPauseBtn');
             const muteBtn = document.getElementById('muteBtn');
             const volumeSlider = document.getElementById('volumeSlider');
             const musicControl = document.getElementById('musicControl');
+
+            // Check if the audio file can be loaded
+            backgroundMusic.addEventListener('error', function() {
+                console.log('Audio file failed to load, using Web Audio API fallback');
+                useWebAudioFallback = true;
+            });
+
+            backgroundMusic.addEventListener('canplay', function() {
+                console.log('Audio file loaded successfully');
+                useWebAudioFallback = false;
+            });
 
             // Initialize Web Audio API
             function initAudio() {
@@ -304,26 +318,50 @@ console.log(`The answer is: ${result}`);"></textarea>
 
             // Play/Pause functionality
             playPauseBtn.addEventListener('click', async function() {
-                if (!audioContext) {
-                    if (!initAudio()) {
-                        alert('Web Audio API not supported in your browser');
-                        return;
-                    }
-                }
-
-                // Resume audio context if needed (required for some browsers)
-                if (audioContext.state === 'suspended') {
-                    await audioContext.resume();
-                }
-
                 if (!isPlaying) {
-                    if (createBackgroundMusic()) {
-                        isPlaying = true;
-                        playPauseBtn.textContent = '⏸️';
-                        playPauseBtn.classList.add('playing');
+                    // Try to play the audio file first
+                    if (!useWebAudioFallback) {
+                        try {
+                            backgroundMusic.muted = isMuted;
+                            backgroundMusic.volume = volumeSlider.value / 100;
+                            await backgroundMusic.play();
+                            isPlaying = true;
+                            playPauseBtn.textContent = '⏸️';
+                            playPauseBtn.classList.add('playing');
+                            return;
+                        } catch (error) {
+                            console.log('Audio file playback failed, falling back to Web Audio API');
+                            useWebAudioFallback = true;
+                        }
+                    }
+                    
+                    // Fallback to Web Audio API if audio file fails
+                    if (useWebAudioFallback) {
+                        if (!audioContext) {
+                            if (!initAudio()) {
+                                alert('Audio playback not supported in your browser');
+                                return;
+                            }
+                        }
+
+                        // Resume audio context if needed (required for some browsers)
+                        if (audioContext.state === 'suspended') {
+                            await audioContext.resume();
+                        }
+
+                        if (createBackgroundMusic()) {
+                            isPlaying = true;
+                            playPauseBtn.textContent = '⏸️';
+                            playPauseBtn.classList.add('playing');
+                        }
                     }
                 } else {
-                    stopBackgroundMusic();
+                    // Pause currently playing audio
+                    if (!useWebAudioFallback) {
+                        backgroundMusic.pause();
+                    } else {
+                        stopBackgroundMusic();
+                    }
                     isPlaying = false;
                     playPauseBtn.textContent = '▶️';
                     playPauseBtn.classList.remove('playing');
@@ -335,6 +373,12 @@ console.log(`The answer is: ${result}`);"></textarea>
                 isMuted = !isMuted;
                 muteBtn.textContent = isMuted ? '🔇' : '🔊';
                 
+                // Apply mute to audio file
+                if (!useWebAudioFallback) {
+                    backgroundMusic.muted = isMuted;
+                }
+                
+                // Apply mute to Web Audio API
                 if (gainNode) {
                     gainNode.gain.setValueAtTime(
                         isMuted ? 0 : volumeSlider.value / 100, 
@@ -353,6 +397,12 @@ console.log(`The answer is: ${result}`);"></textarea>
             volumeSlider.addEventListener('input', function() {
                 const volume = this.value / 100;
                 
+                // Apply volume to audio file
+                if (!useWebAudioFallback) {
+                    backgroundMusic.volume = volume;
+                }
+                
+                // Apply volume to Web Audio API
                 if (gainNode && !isMuted) {
                     gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
                 }
