@@ -1,5 +1,5 @@
 // Vercel serverless function to send messages to Telegram
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const startTime = new Date();
   console.log('=== SEND-MESSAGE FUNCTION START ===');
   console.log('Timestamp:', startTime.toISOString());
@@ -206,4 +206,4 @@ export default async function handler(req, res) {
       details: 'Please try again later' 
     });
   }
-}
+};

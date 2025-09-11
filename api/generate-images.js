@@ -1,7 +1,7 @@
 // Vercel serverless function for Google GenAI Image Generation (Imagen)
-import { GoogleGenerativeAI } from "@google/generative-ai";
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const startTime = new Date();
   console.log('=== GENERATE-IMAGES FUNCTION START ===');
   console.log('Timestamp:', startTime.toISOString());
@@ -128,4 +128,4 @@ export default async function handler(req, res) {
       details: error.message || 'Please try again later' 
     });
   }
-}
+};
