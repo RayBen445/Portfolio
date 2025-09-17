@@ -1,14 +1,16 @@
 /* --- Neumorphic Portfolio Styles by Cool Shot Systems --- */
 
-/* :root variables define the color palette for the entire site. */
+/* --- High-Contrast Neumorphic Palette --- */
 :root {
     --primary-color: #00cfff; /* Bright cyan for accents */
     --secondary-color: #00ff99; /* Vibrant green for secondary accents */
     --light-bg: #e0e5ec; /* Light background for the neumorphic effect */
-    --text-primary: #333; /* Primary text color */
-    --text-secondary: #555; /* Secondary text color */
-    --shadow-light: #ffffff; /* Light shadow for highlights */
-    --shadow-dark: #a8aeb4; /* Dark shadow for depth */
+    
+    /* --- ADJUSTED FOR BETTER CONTRAST --- */
+    --text-primary: #1c1c1c;   /* Darker text for high readability */
+    --text-secondary: #4a4a4a; /* Darker secondary text */
+    --shadow-light: #ffffff;   /* Light shadow for highlights */
+    --shadow-dark: #9da3a9;    /* Darker shadow for more depth and clarity */
 }
 
 /* General body styling */
