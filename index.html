@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RayBen445 - Home | Full-Stack Developer</title>
-    <meta name="description" content="Home page of RayBen445 (Heritage Oladoye) - Full-Stack Developer, Economics Student, and AI Explorer">
+    <title>Cool Shot Systems - Home</title>
+    <meta name="description" content="Home page of Cool Shot Systems">
     <link rel="stylesheet" href="styles.css">
-    <!-- Font Awesome removed due to CDN blocking - using Unicode icons instead -->
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -17,7 +15,7 @@
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link active">Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="projects.html" class="nav-link">Projects</a>
@@ -26,173 +24,32 @@
                     <a href="skills.html" class="nav-link">Skills</a>
                 </li>
                 <li class="nav-item">
-                    <a href="ai-images.html" class="nav-link">AI Images</a>
-                </li>
-                <li class="nav-item">
-                    <a href="ai-text.html" class="nav-link">AI Text</a>
-                </li>
-                <li class="nav-item">
-                    <a href="support.html" class="nav-link">Support</a>
-                </li>
-                <li class="nav-item">
                     <a href="contact.html" class="nav-link">Contact</a>
                 </li>
             </ul>
             <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    <!-- Background Music -->
-    <audio id="backgroundMusic" loop muted>
-        <source src="https://files.catbox.moe/4vb6xe.mp3" type="audio/mpeg">
-        <!-- Using Web Audio API generated tone as fallback -->
-        Your browser does not support the audio element.
-    </audio>
-
-    <!-- Music Control Widget -->
-    <div class="music-control" id="musicControl">
-        <div class="music-info">
-            <span class="music-icon">🎵</span>
-            <span class="music-text">Background Music</span>
-        </div>
-        <div class="music-buttons">
-            <button id="playPauseBtn" class="music-btn">▶️</button>
-            <button id="muteBtn" class="music-btn">🔇</button>
-        </div>
-        <div class="volume-control">
-            <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-slider">
-        </div>
-    </div>
-
     <section class="hero">
         <div class="hero-container">
-            <!-- Brand Header - Using local placeholder -->
-            <div class="brand-header">
-                <div class="company-logo-placeholder">🏢 Cool Shot Systems</div>
-            </div>
-            
-            <!-- Profile Section - Using local placeholder -->
-            <div class="profile-section">
-                <div class="profile-image-placeholder">👨‍💻</div>
-            </div>
-            
-            <div class="hero-content">
-                <h1 class="hero-title">Hi, I'm 𝐏𝐫𝐨𝐟𝐞𝐬𝐬𝐨𝐫 👋</h1>
-                <div class="hero-subtitle">
-                    <span class="role">Full-Stack Developer</span>
-                    <span class="separator">|</span>
-                    <span class="role">Economics Student</span>
-                    <span class="separator">|</span>
-                    <span class="role">AI Explorer</span>
-                </div>
-                <p class="hero-description">
-                    <em>✨ Turning ideas into reality, one commit at a time ✨</em>
-                </p>
-                
-                <!-- Real-time Date & Time -->
-                <div class="datetime-widget">
-                    <p><strong>📅 Current Date:</strong> <span id="current-date"></span></p>
-                    <p><strong>🕒 Live Time:</strong> <span id="current-time"></span></p>
-                </div>
-                
-                <!-- Daily Quote -->
-                <div class="daily-quote">
-                    <p id="daily-quote-text">Loading daily inspiration...</p>
-                </div>
-                
-                <div class="hero-buttons">
-                    <a href="projects.html" class="btn btn-primary">View Projects</a>
-                    <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
-                </div>
+             <div class="hero-content">
+                <h1 class="hero-title">Welcome to Cool Shot Systems</h1>
+                <p class="hero-subtitle">Innovating solutions, one project at a time.</p>
+                <a href="projects.html" class="btn">View My Work</a>
             </div>
         </div>
     </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
+    <footer class="footer">
         <div class="container">
-            <h2 class="section-title">🚀 About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Hi, I'm <strong>𝐏𝐫𝐨𝐟𝐞𝐬𝐬𝐨𝐫</strong> (Heritage Oladoye), a passionate full-stack developer and 200-level Economics student at Ladoke Akintola University of Technology (LAUTECH). I specialize in building intelligent solutions that bridge technology and real-world applications.
-                    </p>
-                    <div class="current-focus">
-                        <h3>Current Focus:</h3>
-                        <ul>
-                            <li>🤖 Multi-AI Telegram bots and automation</li>
-                            <li>💹 Economics-focused web applications</li>
-                            <li>🔗 Blockchain and smart contract development</li>
-                            <li>📊 Data analysis and visualization tools</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <p>&copy; 2024 Cool Shot Systems. All rights reserved.</p>
         </div>
-    </section>
-
-    <!-- Interactive Features Section -->
-    <section class="interactive-features">
-        <div class="container">
-            <h2 class="section-title">🎮 Interactive Features</h2>
-            
-            <!-- JavaScript Code Playground -->
-            <div class="feature-card">
-                <h3><i class="fab fa-js-square"></i> JavaScript Playground</h3>
-                <p>Try out some JavaScript code right here!</p>
-                <div class="code-playground">
-                    <textarea id="code-input" placeholder="// Enter your JavaScript code here
-console.log('Hello, World!');
-const greeting = 'Welcome to my portfolio!';
-console.log(greeting);
-
-// Try some math
-const result = 42 * 2;
-console.log(`The answer is: ${result}`);"></textarea>
-                    <button onclick="runCode()" class="btn btn-primary">Run Code</button>
-                    <div id="code-output"></div>
-                </div>
-            </div>
-
-            <!-- Music Activity Widget - Simplified -->
-            <div class="feature-card">
-                <h3>🎵 Currently Listening</h3>
-                <div class="music-widget">
-                    <div class="music-placeholder">
-                        <p>🎵 Music integration not available in this environment</p>
-                        <p>Visit my social profiles for music activity!</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Social Media Integration -->
-            <div class="feature-card">
-                <h3><i class="fas fa-share-alt"></i> Connect With Me</h3>
-                <div class="social-badges">
-                    <a href="https://twitter.com/RayBen445" target="_blank" class="social-badge twitter">
-                        <i class="fab fa-twitter"></i> Twitter
-                    </a>
-                    <a href="https://dev.to/rayben445" target="_blank" class="social-badge dev">
-                        <i class="fab fa-dev"></i> Dev.to
-                    </a>
-                    <a href="https://medium.com/@rayben445" target="_blank" class="social-badge medium">
-                        <i class="fab fa-medium"></i> Medium
-                    </a>
-                    <a href="https://linkedin.com/in/heritage-oladoye" target="_blank" class="social-badge linkedin">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="https://beacons.ai/professor.coolsystems" target="_blank" class="social-badge beacons">
-                        <i class="fas fa-link"></i> Beacons.ai
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    </footer>
+    <script src="shared.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>    </section>
 
     <!-- Footer -->
     <footer class="footer">
